@@ -58,3 +58,16 @@ def create_resultados_eleicao_2024(dado: ResultadosEleicao2024Create, session: S
     session.commit()
     session.refresh(novo_dado)
     return novo_dado
+
+@app.get("/municipios")
+def read_municipios(session: SessionDep) -> list[Municipio]:
+    dados = session.exec(select(Municipio)).all()
+    return dados
+
+@app.post("/municipios")
+def create_municipios(dado: MunicipioCreate, session: SessionDep) -> Municipio:
+    novo_dado = Municipio(**dado.model_dump())
+    session.add(novo_dado)
+    session.commit()
+    session.refresh(novo_dado)
+    return novo_dado

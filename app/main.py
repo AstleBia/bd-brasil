@@ -71,3 +71,10 @@ def create_municipios(dado: MunicipioCreate, session: SessionDep) -> Municipio:
     session.commit()
     session.refresh(novo_dado)
     return novo_dado
+
+@app.post("/municipios/batch")
+def create_municipios(dados: list[MunicipioCreate], session: SessionDep) -> Municipio:
+    novos_dados = [Municipio(**dado.model_dump()) for dado in dados]
+    session.add_all(novos_dado)
+    session.commit()
+    return {"inserted": len(novos_dados)}

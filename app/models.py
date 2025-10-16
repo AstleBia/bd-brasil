@@ -49,8 +49,7 @@ class ResultadosEleicao2024 (SQLModel, table=True):
 
 class Municipio(SQLModel, table=True):
     __tablename__ = "municipios"
-    id: int | None = Field(default=None, primary_key=True)
-    id_municipio: str = Field(max_length=7)
+    id_municipio: str = Field(max_length=7, primary_key=True)
     nome: str = Field(max_length=50)
     sigla_uf: str = Field(max_length=2)
     nome_uf: str = Field(max_length=30)

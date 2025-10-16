@@ -53,5 +53,5 @@ class Municipio(SQLModel, table=True):
     __tablename__ = "municipios"
     id: int | None = Field(default=None, primary_key=True)
     id_municipio: str = Field(max_length=7)
-    nome: str = Field(max_length=30)
+    nome: str = Field(max_length=50)
     sigla_uf: str = Field(max_length=2)

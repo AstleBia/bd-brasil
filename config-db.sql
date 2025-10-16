@@ -48,6 +48,6 @@ CREATE TABLE dados_eleitorais.resultados_eleicao_2024(
 CREATE TABLE municipios(
     id SERIAL PRIMARY KEY,
     id_municipio VARCHAR(7),
-    nome VARCHAR(30),
+    nome VARCHAR(50),
     sigla_uf VARCHAR(2)
-)
+);

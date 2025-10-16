@@ -28,36 +28,60 @@ def read_resultados_eleicao_2024(session:SessionDep) -> list[ResultadosEleicao20
     return dados
 
 @app.post("/dados-eleicao-2022")
-def create_dados_eleicao_2022(dado: DadosEleicao2022Create, session: SessionDep) -> DadosEleicao2022:
-    novo_dado = DadosEleicao2022(**dado.model_dump())
-    session.add(novo_dado)
-    session.commit()
-    session.refresh(novo_dado)
-    return novo_dado
+def create_dados_eleicao_2022(dados: list[DadosEleicao2022Create] | DadosEleicao2022Create, session: SessionDep) -> DadosEleicao2022:
+    if isinstance(dados, list):
+        novos_dados = [DadosEleicao2022(**dado.model_dump()) for dado in dados]
+        session.add_all(novos_dados)
+        session.commit()
+        return {"inserted": len(novos_dados)}
+    else:
+        novo_dado = DadosEleicao2022(**dados.model_dump())
+        session.add(novo_dado)
+        session.commit()
+        session.refresh(novo_dado)
+        return novo_dado
 
 @app.post("/dados-eleicao-2024")
-def create_dados_eleicao_2024(dado: DadosEleicao2024Create, session: SessionDep) -> DadosEleicao2024:
-    novo_dado = DadosEleicao2024(**dado.model_dump())
-    session.add(novo_dado)
-    session.commit()
-    session.refresh(novo_dado)
-    return novo_dado
+def create_dados_eleicao_2024(dados: list[DadosEleicao2024Create] | DadosEleicao2024Create, session: SessionDep) -> DadosEleicao2024:
+    if isinstance(dados, list):
+        novos_dados = [DadosEleicao2024(**dado.model_dump()) for dado in dados]
+        session.add_all(novos_dados)
+        session.commit()
+        return {"inserted": len(novos_dados)}
+    else:
+        novo_dado = DadosEleicao2024(**dados.model_dump())
+        session.add(novo_dado)
+        session.commit()
+        session.refresh(novo_dado)
+        return novo_dado
 
 @app.post("/resultados-eleicao-2022")
-def create_resultados_eleicao_2022(dado: ResultadosEleicao2022Create, session: SessionDep) -> ResultadosEleicao2022:
-    novo_dado = ResultadosEleicao2022(**dado.model_dump())
-    session.add(novo_dado)
-    session.commit()
-    session.refresh(novo_dado)
-    return novo_dado
+def create_resultados_eleicao_2022(dados: list[ResultadosEleicao2022Create] | ResultadosEleicao2022Create, session: SessionDep) -> ResultadosEleicao2022:
+    if isinstance(dados, list):
+        novos_dados = [ResultadosEleicao2022(**dado.model_dump()) for dado in dados]
+        session.add_all(novos_dados)
+        session.commit()
+        return {"inserted": len(novos_dados)}
+    else:
+        novo_dado = ResultadosEleicao2022(**dados.model_dump())
+        session.add(novo_dado)
+        session.commit()
+        session.refresh(novo_dado)
+        return novo_dado
 
 @app.post("/resultados-eleicao-2024")
-def create_resultados_eleicao_2024(dado: ResultadosEleicao2024Create, session: SessionDep) -> ResultadosEleicao2024:
-    novo_dado = ResultadosEleicao2024(**dado.model_dump())
-    session.add(novo_dado)
-    session.commit()
-    session.refresh(novo_dado)
-    return novo_dado
+def create_resultados_eleicao_2024(dados: list[ResultadosEleicao2024Create] | ResultadosEleicao2024Create, session: SessionDep) -> dict:
+    if isinstance(dados, list):
+        novos_dados = [ResultadosEleicao2024(**dado.model_dump()) for dado in dados]
+        session.add_all(novos_dados)
+        session.commit()
+        return {"inserted": len(novos_dados)}
+    else:
+        novo_dado = ResultadosEleicao2024(**dados.model_dump())
+        session.add(novo_dado)
+        session.commit()
+        session.refresh(novo_dado)
+        return novo_dado
 
 @app.get("/municipios")
 def read_municipios(session: SessionDep) -> list[Municipio]:

@@ -2,7 +2,6 @@ from pydantic import BaseModel
     
 class DadosEleicao2022Create (BaseModel):
     id_municipio: str
-    sigla_uf: str
     turno: int
     cargo: str
     votos_validos: int
@@ -13,7 +12,6 @@ class DadosEleicao2022Create (BaseModel):
 
 class DadosEleicao2024Create (BaseModel):
     id_municipio: str
-    sigla_uf: str
     turno: int
     cargo: str
     votos_validos: int

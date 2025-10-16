@@ -5,7 +5,6 @@ class DadosEleicao2022 (SQLModel, table=True):
     __table_args__ = {"schema": "dados_eleitorais"}
     id: int | None = Field(default=None, primary_key=True)
     id_municipio: str = Field(max_length=7)
-    sigla_uf: str = Field(max_length=2)
     turno: int
     cargo: str = Field(max_length=20)
     votos_validos: int
@@ -19,7 +18,6 @@ class DadosEleicao2024 (SQLModel, table=True):
     __table_args__ = {"schema": "dados_eleitorais"}
     id: int | None = Field(default=None, primary_key=True)
     id_municipio: str = Field(max_length=7)
-    sigla_uf: str = Field(max_length=2)
     turno: int
     cargo: str = Field(max_length=20)
     votos_validos: int

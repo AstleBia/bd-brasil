@@ -3,7 +3,6 @@ CREATE SCHEMA dados_eleitorais;
 CREATE TABLE dados_eleitorais.dados_eleicao_2022 (
     id SERIAL PRIMARY KEY,
     id_municipio VARCHAR(7),
-    sigla_uf VARCHAR(2),
     turno SMALLINT,
     cargo VARCHAR(20),
     votos_validos INT,
@@ -16,7 +15,6 @@ CREATE TABLE dados_eleitorais.dados_eleicao_2022 (
 CREATE TABLE dados_eleitorais.dados_eleicao_2024 (
     id SERIAL PRIMARY KEY,
     id_municipio VARCHAR(7),
-    sigla_uf VARCHAR(2),
     turno SMALLINT,
     cargo VARCHAR(20),
     votos_validos INT,

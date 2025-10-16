@@ -65,16 +65,15 @@ def read_municipios(session: SessionDep) -> list[Municipio]:
     return dados
 
 @app.post("/municipios")
-def create_municipios(dado: MunicipioCreate, session: SessionDep) -> Municipio:
-    novo_dado = Municipio(**dado.model_dump())
-    session.add(novo_dado)
-    session.commit()
-    session.refresh(novo_dado)
-    return novo_dado
-
-@app.post("/municipios/batch")
-def create_municipios(dados: list[MunicipioCreate], session: SessionDep) -> dict:
-    novos_dados = [Municipio(**dado.model_dump()) for dado in dados]
-    session.add_all(novos_dados)
-    session.commit()
-    return {"inserted": len(novos_dados)}
+def create_municipios(dados: list[MunicipioCreate] | MunicipioCreate, session: SessionDep) -> dict:
+    if isinstance(dados, list):
+        novos_dados = [Municipio(**dado.model_dump()) for dado in dados]
+        session.add_all(novos_dados)
+        session.commit()
+        return {"inserted": len(novos_dados)}
+    else:
+        novo_dado = Municipio(**dados.model_dump())
+        session.add(novo_dado)
+        session.commit()
+        session.refresh(novo_dado)
+        return novo_dado.model_dump()

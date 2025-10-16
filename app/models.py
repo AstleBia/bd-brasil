@@ -55,3 +55,5 @@ class Municipio(SQLModel, table=True):
     id_municipio: str = Field(max_length=7)
     nome: str = Field(max_length=50)
     sigla_uf: str = Field(max_length=2)
+    nome_uf: str = Field(max_length=30)
+    nome_regiao: str = Field(max_length=30)

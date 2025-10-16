@@ -40,3 +40,5 @@ class MunicipioCreate (BaseModel):
     id_municipio: str
     nome: str
     sigla_uf: str
+    nome_uf: str
+    nome_regiao: str

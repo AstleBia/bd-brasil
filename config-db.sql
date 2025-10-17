@@ -2,7 +2,7 @@ CREATE SCHEMA dados_eleitorais;
 
 CREATE TABLE dados_eleitorais.dados_eleicao_2022 (
     id SERIAL PRIMARY KEY,
-    id_municipio VARCHAR(7) PRIMARY KEY,
+    id_municipio VARCHAR(7) REFERENCES municipios(id_municipio),
     turno SMALLINT,
     cargo VARCHAR(35),
     votos_validos INT,
@@ -14,7 +14,7 @@ CREATE TABLE dados_eleitorais.dados_eleicao_2022 (
 
 CREATE TABLE dados_eleitorais.dados_eleicao_2024 (
     id SERIAL PRIMARY KEY,
-    id_municipio VARCHAR(7),
+    id_municipio VARCHAR(7) REFERENCES municipios(id_municipio),
     turno SMALLINT,
     cargo VARCHAR(35),
     votos_validos INT,
@@ -27,7 +27,7 @@ CREATE TABLE dados_eleitorais.dados_eleicao_2024 (
 
 CREATE TABLE dados_eleitorais.resultados_eleicao_2022(
     id SERIAL PRIMARY KEY,
-    id_municipio VARCHAR(7),
+    id_municipio VARCHAR(7) REFERENCES municipios(id_municipio),
     cargo VARCHAR(35),
     nome_candidato VARCHAR (100),
     partido VARCHAR(10),
@@ -36,7 +36,7 @@ CREATE TABLE dados_eleitorais.resultados_eleicao_2022(
 
 CREATE TABLE dados_eleitorais.resultados_eleicao_2024(
     id SERIAL PRIMARY KEY,
-    id_municipio VARCHAR(7),
+    id_municipio VARCHAR(7) REFERENCES municipios(id_municipio),
     cargo VARCHAR(35),
     nome_candidato VARCHAR (100),
     partido VARCHAR(10),

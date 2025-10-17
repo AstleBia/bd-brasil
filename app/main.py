@@ -42,7 +42,7 @@ def create_dados_eleicao_2022(dados: list[DadosEleicao2022Create] | DadosEleicao
         return novo_dado
 
 @app.post("/dados-eleicao-2024")
-def create_dados_eleicao_2024(dados: list[DadosEleicao2024Create] | DadosEleicao2024Create, session: SessionDep) -> DadosEleicao2024:
+def create_dados_eleicao_2024(dados: list[DadosEleicao2024Create] | DadosEleicao2024Create, session: SessionDep) -> dict:
     if isinstance(dados, list):
         novos_dados = [DadosEleicao2024(**dado.model_dump()) for dado in dados]
         session.add_all(novos_dados)
@@ -56,7 +56,7 @@ def create_dados_eleicao_2024(dados: list[DadosEleicao2024Create] | DadosEleicao
         return novo_dado
 
 @app.post("/resultados-eleicao-2022")
-def create_resultados_eleicao_2022(dados: list[ResultadosEleicao2022Create] | ResultadosEleicao2022Create, session: SessionDep) -> ResultadosEleicao2022:
+def create_resultados_eleicao_2022(dados: list[ResultadosEleicao2022Create] | ResultadosEleicao2022Create, session: SessionDep) -> dict:
     if isinstance(dados, list):
         novos_dados = [ResultadosEleicao2022(**dado.model_dump()) for dado in dados]
         session.add_all(novos_dados)

@@ -31,9 +31,11 @@ class ResultadosEleicao2022 (SQLModel, table=True):
     __table_args__ = {"schema": "dados_eleitorais"}
     id: int | None = Field(default=None, primary_key=True)
     id_municipio: str = Field(max_length=7)
+    turno: int
     cargo: str = Field(max_length=35)
     nome_candidato: str = Field(max_length=100)
-    partido: str = Field(max_length=10)
+    sigla_partido: str = Field(max_length=30)
+    resultado: str = Field(max_length=30)
     total_votos: int
 
 class ResultadosEleicao2024 (SQLModel, table=True):
@@ -41,9 +43,11 @@ class ResultadosEleicao2024 (SQLModel, table=True):
     __table_args__ = {"schema": "dados_eleitorais"}
     id: int | None = Field(default=None, primary_key=True)
     id_municipio: str = Field(max_length=7)
+    turno: int
     cargo: str = Field(max_length=35)
     nome_candidato: str = Field(max_length=100)
-    partido: str = Field(max_length=10)
+    sigla_partido: str = Field(max_length=30)
+    resultado: str = Field(max_length=30)
     total_votos: int
 
 

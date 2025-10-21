@@ -22,16 +22,20 @@ class DadosEleicao2024Create (BaseModel):
 
 class ResultadosEleicao2022Create (BaseModel):
     id_municipio: str
+    turno: int
     cargo: str
     nome_candidato: str 
-    partido: str
+    sigla_partido: str
+    resultado: str
     total_votos: int
 
 class ResultadosEleicao2024Create (BaseModel):
     id_municipio: str
+    turno: int
     cargo: str
     nome_candidato: str
-    partido: str
+    sigla_partido: str
+    resultado: str
     total_votos: int
 
 class MunicipioCreate (BaseModel):

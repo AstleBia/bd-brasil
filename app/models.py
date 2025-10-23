@@ -58,3 +58,20 @@ class Municipio(SQLModel, table=True):
     sigla_uf: str = Field(max_length=2)
     nome_uf: str = Field(max_length=30)
     nome_regiao: str = Field(max_length=30)
+
+
+class PibSetores(SQLModel, table=True):
+    __tablename__ = "pib_setores"
+    __table_args__ = {"schema": "panorama_economico"}
+    id: int | None = Field(default=None, primary_key=True)
+    id_municipio: str = Field(max_length=7)
+    ano: int
+    pib_total: int
+    pib_per_capita: float
+    va_agropecuaria: int
+    va_industria: int
+    va_servicos: int
+    participacao_agropecuaria: float
+    participacao_industria: float
+    participacao_servicos: float
+    setor_predominante: str = Field(max_length=15)

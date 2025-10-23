@@ -54,3 +54,5 @@ CREATE TABLE municipios(
     nome_uf VARCHAR(30),
     nome_regiao VARCHAR(30)
 );
+
+CREATE SCHEMA panorama_economico;

@@ -44,3 +44,17 @@ class MunicipioCreate (BaseModel):
     sigla_uf: str
     nome_uf: str
     nome_regiao: str
+
+
+class PibSetoresCreate(BaseModel):
+    id_municipio: str
+    ano: int
+    pib_total: int
+    pib_per_capita: float
+    va_agropecuaria: int
+    va_industria: int
+    va_servicos: int
+    participacao_agropecuaria: float
+    participacao_industria: float
+    participacao_servicos: float
+    setor_predominante: str

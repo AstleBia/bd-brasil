@@ -9,8 +9,15 @@ INNER JOIN basedosdados.br_tse_eleicoes.candidatos AS candidatos ON resultados.t
 WHERE resultados.id_municipio IS NOT NULL AND resultados.ano = 2024;
 """
 
+query_candidatos_faltando = """
+SELECT resultados.id_municipio, resultados.turno, resultados.cargo, candidatos.nome AS nome_candidato, resultados.sigla_partido, resultados.resultado, resultados.votos AS total_votos
+FROM basedosdados.br_tse_eleicoes.resultados_candidato_municipio AS resultados
+INNER JOIN basedosdados.br_tse_eleicoes.candidatos AS candidatos ON resultados.sequencial_candidato = candidatos.sequencial AND resultados.ano = candidatos.ano
+WHERE resultados.id_municipio IS NOT NULL AND resultados.ano = 2024 AND resultados.titulo_eleitoral_candidato IS NULL;
+"""
+
 df = bd.read_sql (
-    query=query,
+    query=query_candidatos_faltando,
     billing_project_id='dados-eleitorais-474712'
 )
 
@@ -28,7 +35,7 @@ df = bd.read_sql (
 
 data = df.to_dict(orient='records')
 batch_size = 5000
-url = 'http://172.19.4.145:9000/resultados-eleicao-2024'
+url = 'http://172.19.4.145:9000/resultados-eleicao-2022'
 
 print(f"Total: {len(data)} registros")
 

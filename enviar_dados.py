@@ -3,18 +3,12 @@ import json
 import requests
 
 query = """
-SELECT resultados.id_municipio, resultados.turno, resultados.cargo, candidatos.nome AS nome_candidato, candidatos.nome_urna,resultados.sigla_partido, resultados.resultado, resultados.votos AS total_votos
-FROM basedosdados.br_tse_eleicoes.resultados_candidato_municipio AS resultados
-INNER JOIN basedosdados.br_tse_eleicoes.candidatos AS candidatos ON (resultados.sequencial_candidato = candidatos.sequencial AND resultados.ano = candidatos.ano) OR (resultados.titulo_eleitoral_candidato = candidatos.titulo_eleitoral AND resultados.ano = candidatos.ano)
-WHERE resultados.id_municipio IS NOT NULL AND resultados.ano = 2024;
+SELECT pm.id_municipio,pm.ano, pm.pib,(pm.pib/pop.populacao) AS pib_per_capita ,pop.populacao,pm.va_agropecuaria,pm.va_industria,pm.va_servicos, ROUND(pm.va_agropecuaria/pm.va * 100,2) AS participacao_agropecuaria, ROUND(pm.va_industria/pm.va * 100,2) AS participacao_industria, ROUND(pm.va_servicos/pm.va * 100,2) AS participacao_servicos, GREATEST(va_agropecuaria,va_industria,va_servicos) AS setor_predominante 
+FROM `basedosdados.br_ibge_pib.municipio` AS pm
+INNER JOIN `basedosdados.br_ibge_populacao.municipio` AS pop ON pm.id_municipio = pop.id_municipio AND pm.ano = pop.ano
+WHERE pm.ano>=2010;
 """
 
-query_candidatos_faltando = """
-SELECT resultados.id_municipio, resultados.turno, resultados.cargo, candidatos.nome AS nome_candidato, resultados.sigla_partido, resultados.resultado, resultados.votos AS total_votos
-FROM basedosdados.br_tse_eleicoes.resultados_candidato_municipio AS resultados
-INNER JOIN basedosdados.br_tse_eleicoes.candidatos AS candidatos ON resultados.sequencial_candidato = candidatos.sequencial AND resultados.ano = candidatos.ano
-WHERE resultados.id_municipio IS NOT NULL AND resultados.ano = 2024 AND resultados.titulo_eleitoral_candidato IS NULL;
-"""
 
 
 df = bd.read_sql (
@@ -23,16 +17,6 @@ df = bd.read_sql (
 )
 
 
-#data = df.to_dict(orient='records')
-#r = requests.post('http://172.19.4.145:9000/resultados-eleicao-2022', json=data)
-
-#formatado = json.dumps(data, indent=2)
-#print(formatado)
-#print(data[0])
-#print(df.dtypes)
-
-#print(json.dumps(data,indent=2))
-#print(r.status_code)
 
 data = df.to_dict(orient='records')
 batch_size = 10000

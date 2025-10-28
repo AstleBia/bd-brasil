@@ -31,6 +31,7 @@ CREATE TABLE dados_eleitorais.resultados_eleicao_2022(
     turno SMALLINT,
     cargo VARCHAR(35),
     nome_candidato VARCHAR (100),
+    nome_urna VARCHAR (100),
     sigla_partido VARCHAR(30),
     resultado VARCHAR(30),
     total_votos INT
@@ -42,6 +43,7 @@ CREATE TABLE dados_eleitorais.resultados_eleicao_2024(
     turno SMALLINT,
     cargo VARCHAR(35),
     nome_candidato VARCHAR (100),
+    nome_urna VARCHAR (100),
     sigla_partido VARCHAR(30),
     resultado VARCHAR(30),
     total_votos INT

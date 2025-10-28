@@ -25,6 +25,7 @@ class ResultadosEleicao2022Create (BaseModel):
     turno: int
     cargo: str
     nome_candidato: str 
+    nome_urna: str
     sigla_partido: str
     resultado: str
     total_votos: int
@@ -34,6 +35,7 @@ class ResultadosEleicao2024Create (BaseModel):
     turno: int
     cargo: str
     nome_candidato: str
+    nome_urna: str
     sigla_partido: str
     resultado: str
     total_votos: int

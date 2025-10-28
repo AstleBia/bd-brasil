@@ -76,4 +76,3 @@ class PibSetores(SQLModel, table=True):
     participacao_agropecuaria: float
     participacao_industria: float
     participacao_servicos: float
-    setor_predominante: str = Field(max_length=15)

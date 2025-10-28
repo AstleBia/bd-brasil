@@ -3,7 +3,7 @@ import json
 import requests
 
 query = """
-SELECT pm.id_municipio,pm.ano, pm.pib,(pm.pib/pop.populacao) AS pib_per_capita ,pop.populacao,pm.va_agropecuaria,pm.va_industria,pm.va_servicos, ROUND(pm.va_agropecuaria/pm.va * 100,2) AS participacao_agropecuaria, ROUND(pm.va_industria/pm.va * 100,2) AS participacao_industria, ROUND(pm.va_servicos/pm.va * 100,2) AS participacao_servicos, GREATEST(va_agropecuaria,va_industria,va_servicos) AS setor_predominante 
+SELECT pm.id_municipio, pm.ano, pm.pib AS pib_total,(pm.pib/pop.populacao) AS pib_per_capita ,pm.va_agropecuaria,pm.va_industria,pm.va_servicos, ROUND(pm.va_agropecuaria/pm.va * 100,2) AS participacao_agropecuaria, ROUND(pm.va_industria/pm.va * 100,2) AS participacao_industria, ROUND(pm.va_servicos/pm.va * 100,2) AS participacao_servicos 
 FROM `basedosdados.br_ibge_pib.municipio` AS pm
 INNER JOIN `basedosdados.br_ibge_populacao.municipio` AS pop ON pm.id_municipio = pop.id_municipio AND pm.ano = pop.ano
 WHERE pm.ano>=2010;

@@ -129,5 +129,4 @@ CREATE TABLE panorama_economico.pib_setores(
     participacao_agropecuaria REAL,
     participacao_industria REAL,
     participacao_servicos REAL,
-    setor_predominante VARCHAR(15)
 );

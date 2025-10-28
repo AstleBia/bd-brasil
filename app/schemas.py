@@ -59,4 +59,3 @@ class PibSetoresCreate(BaseModel):
     participacao_agropecuaria: float
     participacao_industria: float
     participacao_servicos: float
-    setor_predominante: str

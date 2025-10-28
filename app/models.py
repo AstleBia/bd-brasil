@@ -1,4 +1,5 @@
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Column
+from sqlalchemy import BigInteger, Float
     
 class DadosEleicao2022 (SQLModel, table=True):
     __tablename__ = "dados_eleicao_2022"
@@ -68,11 +69,11 @@ class PibSetores(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     id_municipio: str = Field(max_length=7)
     ano: int
-    pib_total: int
-    pib_per_capita: float
-    va_agropecuaria: int
-    va_industria: int
-    va_servicos: int
-    participacao_agropecuaria: float
-    participacao_industria: float
-    participacao_servicos: float
+    pib_total: int = Field(sa_column=Column(BigInteger))
+    pib_per_capita: float = Field(sa_column=Column(Float))
+    va_agropecuaria: int = Field(sa_column=Column(BigInteger))
+    va_industria: int = Field(sa_column=Column(BigInteger))
+    va_servicos: int = Field(sa_column=Column(BigInteger))
+    participacao_agropecuaria: float = Field(sa_column=Column(Float))
+    participacao_industria: float = Field(sa_column=Column(Float))
+    participacao_servicos: float = Field(sa_column=Column(Float))

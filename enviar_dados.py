@@ -19,8 +19,8 @@ df = bd.read_sql (
 
 
 data = df.to_dict(orient='records')
-batch_size = 10000
-url = 'http://172.19.4.145:9000/dados-eleitorais/resultados-eleicao-2024'
+batch_size = 5000
+url = 'http://172.19.4.145:9000/panorama-economico/pib-setores'
 
 print(f"Total: {len(data)} registros")
 

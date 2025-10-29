@@ -87,6 +87,6 @@ class ProducaoAgricolaPermanente(SQLModel, table=True):
     nome_produto: str = Field(max_length=50)
     area_destinada_colheita: int | None
     area_colhida: int | None
-    quatidade_produzida: float | None
+    quantidade_produzida: float | None
     rendimento_medio_producao: float | None
     valor_producao: float | None

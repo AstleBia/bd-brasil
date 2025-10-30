@@ -3,9 +3,9 @@ import numpy as np
 import requests
 
 query = """
-SELECT id_municipio, ano, produto AS nome_produto, area_destinada_colheita, area_colhida, quantidade_produzida, rendimento_medio_producao, valor_producao
-FROM `basedosdados.br_ibge_pam.lavoura_permanente` 
-WHERE ano>= 2010 AND (area_destinada_colheita IS NOT NULL OR area_colhida IS NOT NULL OR quantidade_produzida IS NOT NULL OR rendimento_medio_producao IS NOT NULL OR valor_producao IS NOT NULL);
+SELECT id_municipio, ano, produto AS nome_produto, area_plantada AS area_destinada_colheita, area_colhida, quantidade_produzida, rendimento_medio_producao, valor_producao 
+FROM `basedosdados.br_ibge_pam.lavoura_temporaria` 
+WHERE ano >= 2010 AND (area_plantada IS NOT NULL OR area_colhida IS NOT NULL OR quantidade_produzida IS NOT NULL OR rendimento_medio_producao IS NOT NULL OR valor_producao IS NOT NULL);
 """
 
 

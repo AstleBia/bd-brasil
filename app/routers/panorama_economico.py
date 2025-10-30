@@ -46,7 +46,7 @@ def create_producao_agricola_permanente(dados: list[ProducaoAgricolaPermanenteCr
     
 @router.get("/producao-agricola-temporaria")
 def read_producao_agricola_temporaria(session: SessionDep) -> list[ProducaoAgricolaTemporaria]:
-    dados = session.exec(select(ProducaoAgricolaPermanente)).all()
+    dados = session.exec(select(ProducaoAgricolaTemporaria)).all()
     return dados
 
 @router.post("/producao-agricola-temporaria")

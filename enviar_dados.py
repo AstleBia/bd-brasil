@@ -9,7 +9,6 @@ WHERE ano>= 2010 AND (area_destinada_colheita IS NOT NULL OR area_colhida IS NOT
 """
 
 
-
 df = bd.read_sql (
     query=query,
     billing_project_id='dados-eleitorais-474712'

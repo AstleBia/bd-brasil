@@ -19,7 +19,7 @@ df = df.replace({np.nan: None})
 data = df.to_dict(orient='records')
 
 batch_size = 5000
-url = 'http://172.19.4.145:9000/panorama-economico/producao-agricola-permanente'
+url = 'http://172.19.4.145:9000/panorama-economico/producao-agricola-temporaria'
 
 print(f"Total: {len(data)} registros")
 

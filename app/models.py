@@ -92,7 +92,7 @@ class ProducaoAgricolaPermanente(SQLModel, table=True):
     valor_producao: float | None
 
 class ProducaoAgricolaTemporaria(SQLModel, table=True):
-    __tablename__ = "producao_agricola_permanente"
+    __tablename__ = "producao_agricola_temporaria"
     __table_args__ = {"schema": "panorama_economico"}
     id: int | None = Field(default=None, primary_key=True)
     id_municipio: str = Field(max_length=7)

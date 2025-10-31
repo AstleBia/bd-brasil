@@ -153,3 +153,16 @@ CREATE TABLE panorama_economico.producao_animal(
     unidade VARCHAR(25),
     valor INT
 );
+
+CREATE TABLE panorama_economico.producao_agricola(
+    id SERIAL PRIMARY KEY,
+    id_municipio VARCHAR(7) REFERENCES municipios(id_municipio),
+    ano INT,
+    tipo VARCHAR(15),
+    nome_produto VARCHAR(50),
+    area_destinada_colheita INT,
+    area_colhida INT,
+    quantidade_produzida REAL,
+    rendimento_medio_producao REAL,
+    valor_producao REAL
+);

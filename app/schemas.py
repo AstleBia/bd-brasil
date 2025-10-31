@@ -88,3 +88,14 @@ class ProducaoAnimalCreate(BaseModel):
     quantidade: int
     unidade: str
     valor: int
+
+class ProducaoAgricola(BaseModel):
+    id_municipio: str
+    ano: int
+    tipo: str
+    nome_produto: str
+    area_destinada_colheita: int | None
+    area_colhida: int | None
+    quantidade_produzida: float | None
+    rendimento_medio_producao: float | None
+    valor_producao: float | None

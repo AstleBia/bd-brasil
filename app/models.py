@@ -78,32 +78,6 @@ class PibSetores(SQLModel, table=True):
     participacao_industria: float = Field(sa_column=Column(Float))
     participacao_servicos: float = Field(sa_column=Column(Float))
 
-class ProducaoAgricolaPermanente(SQLModel, table=True):
-    __tablename__ = "producao_agricola_permanente"
-    __table_args__ = {"schema": "panorama_economico"}
-    id: int | None = Field(default=None, primary_key=True)
-    id_municipio: str = Field(max_length=7)
-    ano: int
-    nome_produto: str = Field(max_length=50)
-    area_destinada_colheita: int | None
-    area_colhida: int | None
-    quantidade_produzida: float | None
-    rendimento_medio_producao: float | None
-    valor_producao: float | None
-
-class ProducaoAgricolaTemporaria(SQLModel, table=True):
-    __tablename__ = "producao_agricola_temporaria"
-    __table_args__ = {"schema": "panorama_economico"}
-    id: int | None = Field(default=None, primary_key=True)
-    id_municipio: str = Field(max_length=7)
-    ano: int
-    nome_produto: str = Field(max_length=50)
-    area_destinada_colheita: int | None
-    area_colhida: int | None
-    quantidade_produzida: float | None
-    rendimento_medio_producao: float | None
-    valor_producao: float | None
-
 class ProducaoAnimal(SQLModel, table=True):
     __tablename__ = "producao_animal"
     __table_args__ = {"schema": "panorama_economico"}

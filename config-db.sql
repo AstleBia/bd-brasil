@@ -131,17 +131,6 @@ CREATE TABLE panorama_economico.pib_setores(
     participacao_servicos REAL,
 );
 
-CREATE TABLE panorama_economico.producao_agricola_permanente(
-    id SERIAL PRIMARY KEY,
-    id_municipio VARCHAR(7) REFERENCES municipios(id_municipio),
-    ano INT,
-    nome_produto VARCHAR(50),
-    area_destinada_colheita INT,
-    area_colhida INT,
-    quantidade_produzida REAL,
-    rendimento_medio_producao REAL,
-    valor_producao REAL
-);
 
 CREATE TABLE panorama_economico.producao_animal(
     id SERIAL PRIMARY KEY,

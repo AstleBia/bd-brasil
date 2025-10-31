@@ -60,26 +60,6 @@ class PibSetoresCreate(BaseModel):
     participacao_industria: float
     participacao_servicos: float
 
-class ProducaoAgricolaPermanenteCreate(BaseModel):
-    id_municipio: str
-    ano: int
-    nome_produto: str
-    area_destinada_colheita: int | None
-    area_colhida: int | None
-    quantidade_produzida: float | None
-    rendimento_medio_producao: float | None
-    valor_producao: float | None
-
-class ProducaoAgricolaTemporariaCreate(BaseModel):
-    id_municipio: str
-    ano: int
-    nome_produto: str
-    area_destinada_colheita: int | None
-    area_colhida: int | None
-    quantidade_produzida: float | None
-    rendimento_medio_producao: float | None
-    valor_producao: float | None
-
 class ProducaoAnimalCreate(BaseModel):
     id_municipio: str
     ano: int

@@ -106,7 +106,7 @@ class ProducaoAgricola(SQLModel, table=True):
 
 class EfetivoPecuaria(SQLModel, table=True):
     __tablename__ = "efetivo_pecuaria"
-    __table_args__ = {"schema":"efetivo_pecuaria"}
+    __table_args__ = {"schema":"panorama_economico"}
     id: int | None = Field(default=None, primary_key=True)
     id_municipio: str = Field(max_length=7)
     ano: int

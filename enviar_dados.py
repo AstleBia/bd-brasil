@@ -3,9 +3,9 @@ import numpy as np
 import requests
 
 query = """
-SELECT id_municipio, ano, 'temporaria' AS tipo ,produto AS nome_produto, area_plantada AS area_destinada_colheita, area_colhida, quantidade_produzida, rendimento_medio_producao, valor_producao
-FROM `basedosdados.br_ibge_pam.lavoura_temporaria`
-WHERE ano >= 2010 AND (area_plantada IS NOT NULL OR area_colhida IS NOT NULL OR quantidade_produzida IS NOT NULL OR rendimento_medio_producao IS NOT NULL OR valor_producao IS NOT NULL);
+SELECT id_municipio, ano, tipo_rebanho, quantidade
+FROM `basedosdados.br_ibge_ppm.efetivo_rebanhos`
+WHERE ano >= 2010
 """
 
 
@@ -19,7 +19,7 @@ df = df.replace({np.nan: None})
 data = df.to_dict(orient='records')
 
 batch_size = 10000
-url = 'http://172.19.4.145:9000/panorama-economico/producao-agricola'
+url = 'http://172.19.4.145:9000/panorama-economico/efetivo-pecuaria'
 
 print(f"Total: {len(data)} registros")
 

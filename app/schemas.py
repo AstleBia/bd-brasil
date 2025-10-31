@@ -79,3 +79,12 @@ class ProducaoAgricolaTemporariaCreate(BaseModel):
     quantidade_produzida: float | None
     rendimento_medio_producao: float | None
     valor_producao: float | None
+
+class ProducaoAnimalCreate(BaseModel):
+    id_municipio: str
+    ano: int
+    tipo: str
+    nome_produto: str
+    quantidade: int
+    unidade: str
+    valor: int

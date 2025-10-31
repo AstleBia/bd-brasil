@@ -103,3 +103,15 @@ class ProducaoAgricolaTemporaria(SQLModel, table=True):
     quantidade_produzida: float | None
     rendimento_medio_producao: float | None
     valor_producao: float | None
+
+class ProducaoAnimal(SQLModel, table=True):
+    __tablename__ = "producao_animal"
+    __table_args__ = {"schema": "panorama_economico"}
+    id: int | None = Field(default=None, primary_key=True)
+    id_municipio: str = Field(max_length=7)
+    ano: int
+    tipo: str = Field(max_length=15)
+    nome_produto: str = Field(max_length=100)
+    quantidade: int
+    unidade: str = Field(max_length=25)
+    valor: int

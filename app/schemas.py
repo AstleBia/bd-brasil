@@ -89,7 +89,7 @@ class ProducaoAnimalCreate(BaseModel):
     unidade: str
     valor: int
 
-class ProducaoAgricola(BaseModel):
+class ProducaoAgricolaCreate(BaseModel):
     id_municipio: str
     ano: int
     tipo: str

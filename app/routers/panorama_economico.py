@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from sqlmodel import select
 from ..database import SessionDep
-from ..models import PibSetores, ProducaoAgricolaPermanente, ProducaoAgricolaTemporaria, ProducaoAnimal
-from ..schemas import PibSetoresCreate, ProducaoAgricolaPermanenteCreate, ProducaoAgricolaTemporariaCreate, ProducaoAnimalCreate
+from ..models import PibSetores, ProducaoAgricolaPermanente, ProducaoAgricolaTemporaria, ProducaoAnimal, ProducaoAgricola
+from ..schemas import PibSetoresCreate, ProducaoAgricolaPermanenteCreate, ProducaoAgricolaTemporariaCreate, ProducaoAnimalCreate, ProducaoAgricolaCreate
 
 router = APIRouter(prefix="/panorama-economico", tags=["Panorama Econômico"])
 
@@ -77,6 +77,25 @@ def create_producao_animal(dados: list[ProducaoAnimalCreate] | ProducaoAnimalCre
         return {"inserted":len(novos_dados)}
     else:
         novo_dado = ProducaoAnimal(**dados.model_dump())
+        session.add(novo_dado)
+        session.commit()
+        session.refresh(novo_dado)
+        return novo_dado
+    
+@router.get("/producao-agricola")
+def read_producao_agricola(session: SessionDep) -> list[ProducaoAgricola]:
+    dados = session.exec(select(ProducaoAgricola)).all()
+    return dados
+
+@router.post("/producao-agricola")
+def create_producao_agricola(dados: list[ProducaoAgricolaCreate] | ProducaoAgricolaCreate, session: SessionDep) -> dict:
+    if isinstance(dados, list):
+        novos_dados = [ProducaoAgricola(**dado.model_dump()) for dado in dados]
+        session.add_all(novos_dados)
+        session.commit()
+        return {"inserted":len(novos_dados)}
+    else:
+        novo_dado = ProducaoAgricola(**dados.model_dump())
         session.add(novo_dado)
         session.commit()
         session.refresh(novo_dado)

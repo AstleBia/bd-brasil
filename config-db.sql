@@ -155,3 +155,11 @@ CREATE TABLE panorama_economico.producao_agricola(
     rendimento_medio_producao REAL,
     valor_producao REAL
 );
+
+CREATE TABLE panorama_economico.efetivo_pecuaria(
+    id SERIAL PRIMARY KEY,
+    id_municipio VARCHAR(7) REFERENCES municipios(id_municipio),
+    ano INT,
+    tipo_rebanho VARCHAR(50),
+    quantidade INT
+);

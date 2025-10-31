@@ -79,3 +79,9 @@ class ProducaoAgricolaCreate(BaseModel):
     quantidade_produzida: float | None
     rendimento_medio_producao: float | None
     valor_producao: float | None
+
+class EfetivoPecuariaCreate(BaseModel):
+    id_municipio: str
+    ano: int
+    tipo_rebanho: str
+    quantidade: int

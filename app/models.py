@@ -103,3 +103,12 @@ class ProducaoAgricola(SQLModel, table=True):
     quantidade_produzida: float | None
     rendimento_medio_producao: float | None
     valor_producao: float | None
+
+class EfetivoPecuaria(SQLModel, table=True):
+    __tablename__ = "efetivo_pecuaria"
+    __table_args__ = {"schema":"efetivo_pecuaria"}
+    id: int | None = Field(default=None, primary_key=True)
+    id_municipio: str = Field(max_length=7)
+    ano: int
+    tipo_rebanho: str = Field(max_length=50)
+    quantidade: int

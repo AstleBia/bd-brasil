@@ -1,3 +1,4 @@
+from pyarrow import table
 from sqlmodel import SQLModel, Field, Column
 from sqlalchemy import BigInteger, Float
     
@@ -112,3 +113,12 @@ class EfetivoPecuaria(SQLModel, table=True):
     ano: int
     tipo_rebanho: str = Field(max_length=50)
     quantidade: int
+
+class Escolas(SQLModel, table=True):
+    __tablename__ = "escolas"
+    __table_args__ = {"schema":"dados_educacionais_brasil"}
+    codigo_inep: str = Field(primary_key=True)
+    nome_escola: str
+    sigla_uf: str = Field(max_length=2)
+    nome_municipio: str = Field(max_length=50)
+    dependencia_adm: str = Field(max_length=10)

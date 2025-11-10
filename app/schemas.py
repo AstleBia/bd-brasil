@@ -85,3 +85,10 @@ class EfetivoPecuariaCreate(BaseModel):
     ano: int
     tipo_rebanho: str
     quantidade: int
+
+class EscolasCreate(BaseModel):
+    codigo_inep: str
+    nome_escola: str
+    sigla_uf: str
+    nome_municipio: str
+    dependencia_adm: str

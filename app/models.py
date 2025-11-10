@@ -122,3 +122,4 @@ class Escolas(SQLModel, table=True):
     sigla_uf: str = Field(max_length=2)
     nome_municipio: str = Field(max_length=50)
     dependencia_adm: str = Field(max_length=10)
+    etapas_ensino: str | None

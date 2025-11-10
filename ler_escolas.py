@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+import requests
+import json
 
 # Lê o arquivo CSV
 escolas = pd.read_csv("lista_escolas_inep.csv")
@@ -10,13 +12,15 @@ escolas_selecionadas = escolas[[
     'Escola',
     'UF',
     'Município',
-    'Dependência Administrativa'
+    'Dependência Administrativa',
+    'Etapas e Modalidade de Ensino Oferecidas'
 ]].rename(columns={
     'Código INEP': 'codigo_inep',
     'Escola': 'nome_escola',
     'UF': 'sigla_uf',
     'Município': 'nome_municipio',
-    'Dependência Administrativa': 'dependencia_adm'
+    'Dependência Administrativa': 'dependencia_adm',
+    'Etapas e Modalidade de Ensino Oferecidas': 'etapas'
 })
 
 # Converte codigo_inep para string
@@ -31,10 +35,20 @@ escolas_selecionadas = escolas_selecionadas.replace({np.nan: None})
 # Converte para lista de dicionários
 data = escolas_selecionadas.to_dict(orient='records')
 
-# Exibe informações
-print("Total de escolas:", len(data))
-print("\nPrimeiros 3 registros:")
-for i, escola in enumerate(data[:3], 1):
-    print(f"\n{i}. {escola}")
+batch_size = 10000
+url = 'http://172.19.4.145:9000/dados-educacionais/escolas'
 
-print(type(data[0]['codigo_inep']))
+print(f"Total: {len(data)} registros")
+
+for i in range(0, len(data), batch_size):
+    batch = data[i:i+batch_size]
+    r = requests.post(url, json=batch)
+
+    if r.status_code == 200:
+        print(f"✓ Lote {i//batch_size + 1}: {len(batch)} registros")
+    else:
+        print(f"✗ Erro lote {i//batch_size + 1}: {r.status_code}")
+        print(r.text[:300])
+        break
+
+print("Concluído!")

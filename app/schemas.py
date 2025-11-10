@@ -92,3 +92,4 @@ class EscolasCreate(BaseModel):
     sigla_uf: str
     nome_municipio: str
     dependencia_adm: str
+    etapas_ensino: str | None

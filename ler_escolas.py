@@ -20,7 +20,7 @@ escolas_selecionadas = escolas[[
     'UF': 'sigla_uf',
     'Município': 'nome_municipio',
     'Dependência Administrativa': 'dependencia_adm',
-    'Etapas e Modalidade de Ensino Oferecidas': 'etapas'
+    'Etapas e Modalidade de Ensino Oferecidas': 'etapas_ensino'
 })
 
 # Converte codigo_inep para string

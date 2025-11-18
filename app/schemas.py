@@ -93,3 +93,23 @@ class EscolasCreate(BaseModel):
     nome_municipio: str
     dependencia_adm: str
     etapas_ensino: str | None
+
+class OfertaEducacionalCreate(BaseModel):
+    id_municipio: str
+    ano: int
+    rede: str
+    estudantes_infantil: int
+    estudantes_fundamental: int
+    estudantes_medio: int
+    estudantes_profissional: int
+    estudantes_eja: int
+    docentes_infantil: int
+    docentes_fundamental: int
+    docentes_medio: int
+    docentes_profissional: int
+    docentes_eja: int
+    escolas_infantil: int
+    escolas_fundamental: int
+    escolas_medio: int
+    escolas_profissional: int
+    escolas_eja: int

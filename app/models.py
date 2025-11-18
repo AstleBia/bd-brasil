@@ -123,3 +123,26 @@ class Escolas(SQLModel, table=True):
     nome_municipio: str = Field(max_length=50)
     dependencia_adm: str = Field(max_length=10)
     etapas_ensino: str | None
+
+class OfertaEducacional(SQLModel, table = True):
+    __tablename__ = "oferta_educacional"
+    __table_args__ = {"schema":"dados_educacionais_brasil"}
+    id: int | None = Field(default=None, primary_key=True)
+    id_municipio: str = Field(max_length=7)
+    ano: int
+    rede: str = Field(max_length=10)
+    estudantes_infantil: int
+    estudantes_fundamental: int
+    estudantes_medio: int
+    estudantes_profissional: int
+    estudantes_eja: int
+    docentes_infantil: int
+    docentes_fundamental: int
+    docentes_medio: int
+    docentes_profissional: int
+    docentes_eja: int
+    escolas_infantil: int
+    escolas_fundamental: int
+    escolas_medio: int
+    escolas_profissional: int
+    escolas_eja: int

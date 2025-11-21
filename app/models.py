@@ -146,3 +146,14 @@ class OfertaEducacional(SQLModel, table = True):
     escolas_medio: int
     escolas_profissional: int
     escolas_eja: int
+
+class IdebEscola(SQLModel, table = True):
+    __tablename__ = "ideb_escola"
+    __table_args__ = {"schema":"dados_educacionais_brasil"}
+    id: int | None = Field(default=None, primary_key=True)
+    id_municipio: str = Field(max_length=7)
+    ano: int
+    id_escola: str = Field(max_length=8)
+    rede: str = Field(max_length=10)
+    ensino: str = Field(max_length=15)
+    ideb: float

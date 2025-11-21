@@ -113,3 +113,11 @@ class OfertaEducacionalCreate(BaseModel):
     escolas_medio: int
     escolas_profissional: int
     escolas_eja: int
+
+class IdebEscolaCreate(BaseModel):
+    id_municipio: str
+    ano: int
+    id_escola: str
+    rede: str
+    ensino: str
+    ideb: float

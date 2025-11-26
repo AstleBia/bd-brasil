@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from sqlmodel import Session, select
 from ..database import SessionDep
-from ..models import Escolas, IdebEscola, OfertaEducacional
-from ..schemas import EscolasCreate, IdebEscolaCreate, OfertaEducacionalCreate
+from ..models import Escolas, IdebEscola, OfertaEducacional, Enem
+from ..schemas import EscolasCreate, IdebEscolaCreate, OfertaEducacionalCreate, EnemCreate
 
 router = APIRouter(prefix="/dados-educacionais", tags=["Dados Educacionais"])
 
@@ -63,3 +63,21 @@ def create_ideb_escola(dados: list[IdebEscolaCreate] | IdebEscolaCreate, session
         session.refresh(novo_dado)
         return novo_dado
 
+@router.get("/enem")
+def read_enem(session: SessionDep) -> list[Enem]:
+    dados = session.exec(select(Enem)).all()
+    return dados
+
+@router.post("/enem")
+def create_enem(dados: list[EnemCreate] | EnemCreate, session: SessionDep) -> dict:
+    if isinstance(dados, list):
+        novos_dados = [Enem(**dado.model_dump()) for dado in dados]
+        session.add_all(novos_dados)
+        session.commit()
+        return {"inserted": len(novos_dados)}
+    else:
+        novo_dado = Enem(**dados.model_dump())
+        session.add(novo_dado)
+        session.commit()
+        session.refresh(novo_dado)
+        return novo_dado

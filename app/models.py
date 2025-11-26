@@ -157,3 +157,16 @@ class IdebEscola(SQLModel, table = True):
     rede: str = Field(max_length=10)
     ensino: str = Field(max_length=15)
     ideb: float
+
+class Enem(SQLModel, table = True):
+    __tablename__ = "enem"
+    __table_args__ = {"schema":"dados_educacionais_brasil"}
+    id: int | None = Field(default=None, primary_key=True)
+    id_municipio: str = Field(max_length=7)
+    ano: int
+    rede: str = Field(max_length=10)
+    media_ciencias_natureza: float
+    media_ciencias_humanas: float
+    media_linguagens_codigos: float
+    media_matematica: float
+    media_redacao: float

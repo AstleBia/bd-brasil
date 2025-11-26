@@ -62,3 +62,4 @@ def create_ideb_escola(dados: list[IdebEscolaCreate] | IdebEscolaCreate, session
         session.commit()
         session.refresh(novo_dado)
         return novo_dado
+

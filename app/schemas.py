@@ -121,3 +121,13 @@ class IdebEscolaCreate(BaseModel):
     rede: str
     ensino: str
     ideb: float
+
+class EnemCreate(BaseModel):
+    id_municipio: str
+    ano: int
+    rede: str
+    media_ciencias_natureza: float
+    media_ciencias_humanas: float
+    media_linguagens_codigos: float
+    media_matematica: float
+    media_redacao: float

@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from ..database import SessionDep
 from sqlmodel import select
-from ..models import DadosEleicao2022, DadosEleicao2024, ResultadosEleicao2022, ResultadosEleicao2024, Municipio
-from ..schemas import DadosEleicao2022Create, DadosEleicao2024Create, ResultadosEleicao2022Create, ResultadosEleicao2024Create, MunicipioCreate
+from ..models import DadosEleicao2022, DadosEleicao2024, ResultadosEleicao2022, ResultadosEleicao2024, Municipio, Eleitos2024
+from ..schemas import DadosEleicao2022Create, DadosEleicao2024Create, ResultadosEleicao2022Create, ResultadosEleicao2024Create, MunicipioCreate, Eleitos2024Create
 
 router = APIRouter(prefix="/dados-eleitorais", tags=["Dados Eleitorais"])
 
@@ -96,6 +96,25 @@ def create_municipios(dados: list[MunicipioCreate] | MunicipioCreate, session: S
         return {"inserted": len(novos_dados)}
     else:
         novo_dado = Municipio(**dados.model_dump())
+        session.add(novo_dado)
+        session.commit()
+        session.refresh(novo_dado)
+        return novo_dado.model_dump()
+
+@router.get("/eleitos-2024")
+def read_eleitos_2024(session: SessionDep) -> list[Eleitos2024]:
+    dados = session.exec(select(Eleitos2024)).all()
+    return dados
+
+@router.post("/eleitos-2024")
+def create_eleitos_2024(dados: list[Eleitos2024Create] | Eleitos2024Create, session: SessionDep) -> dict:
+    if isinstance(dados,list):
+        novos_dados = [Eleitos2024(**dado.model_dump()) for dado in dados]
+        session.add_all(novos_dados)
+        session.commit()
+        return {"inserted": len(novos_dados)}
+    else:
+        novo_dado = Eleitos2024(**dados.model_dump())
         session.add(novo_dado)
         session.commit()
         session.refresh(novo_dado)

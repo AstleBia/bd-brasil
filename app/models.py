@@ -170,3 +170,15 @@ class Enem(SQLModel, table = True):
     media_linguagens_codigos: float
     media_matematica: float
     media_redacao: float
+
+class Eleitos2024(SQLModel, table=True):
+    __tablename__ = "eleitos_2024"
+    __table_args__ = {"schema":"dados_eleitorais"}
+    id_municipio : str = Field(max_length=7, primary_key=True)
+    nome_municipio:str = Field(max_length=50)
+    sigla_uf:str = Field(max_length=2)
+    prefeito_eleito:str
+    partido_prefeito: str = Field(max_length=30)
+    vice_prefeito_eleito:str
+    partido_vice: str = Field(max_length=30)
+    turno:int

@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Caminho do arquivo CSV
-arquivo_csv = '/Users/bia/Documents/Facilit/dados-enem/microdados_enem_2023/DADOS/MICRODADOS_ENEM_2023.csv'
+arquivo_csv = '/Users/bia/Documents/Facilit/dados-enem/microdados_enem_2010/DADOS/MICRODADOS_ENEM_2010.csv'
 
 print("Lendo arquivo CSV...")
 # Ler o arquivo CSV com encoding apropriado
@@ -78,7 +78,7 @@ mapa_rede = {
 df_agrupado['rede'] = df_agrupado['rede'].map(mapa_rede)
 
 # Adicionar coluna ano com valor 2023
-df_agrupado['ano'] = 2023
+df_agrupado['ano'] = 2010
 
 # Reordenar colunas para colocar 'ano' depois de 'rede'
 colunas_ordenadas = ['id_municipio', 'ano', 'rede', 'media_ciencias_natureza', 
@@ -96,7 +96,7 @@ print("\nPrimeiras linhas do resultado:")
 print(df_agrupado.head(10))
 
 # Salvar resultado em CSV
-arquivo_saida = 'medias_enem_2023_por_municipio.csv'
+arquivo_saida = 'medias_enem_2010_por_municipio.csv'
 df_agrupado.to_csv(arquivo_saida, index=False, encoding='utf-8-sig')
 print(f"\nResultado salvo em: {arquivo_saida}")
 

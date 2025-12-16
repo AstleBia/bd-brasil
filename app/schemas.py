@@ -131,3 +131,13 @@ class EnemCreate(BaseModel):
     media_linguagens_codigos: float
     media_matematica: float
     media_redacao: float
+
+class Eleitos2024Create(BaseModel):
+    id_municipio: str
+    nome_municipio: str
+    sigla_uf: str
+    prefeito_eleito: str
+    partido_prefeito: str
+    vice_prefeito_eleito: str
+    partido_vice: str
+    turno: int
